@@ -1,0 +1,4 @@
+{
+  // トランスパイルする際のプリセットをbabelに設定
+  "presets": ["@babel/preset-env"]
+}
