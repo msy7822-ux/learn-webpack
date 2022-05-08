@@ -1,7 +1,17 @@
 const path = require("node:path");
 const isDevEnv = process.env.NODE_ENV === 'development';
+// webpackのhtml用のプラグインの読み込み
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./dist/index.html",
+      inject: "body",
+      scriptLoading: "defer",
+      favicon: "./src/favicon.ico",
+    }),
+  ],
   target: ['web', 'es5'],
   mode: isDevEnv ? "development" : "production",
   devtool: isDevEnv ? "source-map" : undefined,
@@ -17,8 +27,8 @@ module.exports = {
     app: "./src/entry.jsx"
   },
   output: {
-    filename: "[name].js",
     path: path.resolve(__dirname, "dist"),
+    filename: "[name].js",
     assetModuleFilename: "asset/[name][ext]",
   },
   module: {
