@@ -1,0 +1,13 @@
+// scssの記法に変更
+
+body {
+  margin: 0;
+
+  .container {
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

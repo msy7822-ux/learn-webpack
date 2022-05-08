@@ -28,20 +28,35 @@ module.exports = {
     // 多くの場合、test でファイル形式を指定し、loader（または use 配列）へローダーを指定することになる
     rules: [
       {
+        // 画像やフォントファイル
+        test: /\.(ico|png|svg|ttf|otf|eot|woff?2?)$/,
+        type: "asset",
+      },
+      {
         // 拡張子 jsxのファイル（正規表現）
         test: /\.jsx?$/,
         // ローダーの指定
         loader: "babel-loader",
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", {
-          loader:  "css-loader",
-          options: {
-            // dev モードではソースマップを付ける
-            sourceMap: isDevEnv,
-          }
-        }]
+        // 拡張子 scss または css のファイルが対象
+        test: /\.s?css$/,
+        use: [
+          "style-loader",
+          {
+            loader:  "css-loader",
+            options: {
+              // dev モードではソースマップを付ける
+              sourceMap: isDevEnv,
+            }
+          },
+          {
+            loader: "sass-loader",
+            options: {
+              sourceMap: isDevEnv,
+            },
+          },
+        ]
       },
     ],
   },
