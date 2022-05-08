@@ -1,12 +1,16 @@
 const path = require("node:path");
 const isDevEnv = process.env.NODE_ENV === 'development';
-// webpackのhtml用のプラグインの読み込み
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// buildするごとに溜まっていく./distディレクトリの不要なファイルを削除するプラグイン
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   plugins: [
+    new CleanWebpackPlugin(),
+    new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: "./dist/index.html",
+      template: "./src/index.html",
       inject: "body",
       scriptLoading: "defer",
       favicon: "./src/favicon.ico",
@@ -28,7 +32,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].js",
+    filename: "output.js",
     assetModuleFilename: "asset/[name][ext]",
   },
   module: {
@@ -47,7 +51,7 @@ module.exports = {
         // 拡張子 scss または css のファイルが対象
         test: /\.s?css$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader:  "css-loader",
             options: {
