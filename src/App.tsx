@@ -2,7 +2,7 @@ import React from "react";
 import "./styles.scss";
 import './favicon.ico';
 
-export const App = () => {
+export const App = (): JSX.Element => {
   return (
     <div className="container">
       <img src={'asset/favicon.ico'} alt="" />
