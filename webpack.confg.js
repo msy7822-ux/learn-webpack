@@ -2,7 +2,6 @@ const path = require("node:path");
 const isDevEnv = process.env.NODE_ENV === 'development';
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// buildするごとに溜まっていく./distディレクトリの不要なファイルを削除するプラグイン
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
