@@ -1,11 +1,11 @@
 import React from "react";
 import "./styles.scss";
-import Favicon from './favicon.ico';
+import './favicon.ico';
 
 export const App = () => {
   return (
     <div className="container">
-      <img src={Favicon} alt="" />
+      <img src={'asset/favicon.ico'} alt="" />
       <h1>Hello....</h1>
     </div>
   );
